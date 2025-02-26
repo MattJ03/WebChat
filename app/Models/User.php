@@ -44,7 +44,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function ownedServers() {
+    public function Servers() {
         return $this->hasMany(Server::class, 'owner_id');
     }
 
@@ -54,6 +54,14 @@ class User extends Authenticatable
 
     public function membership() {
         return $this->belongsTo(Membership::class, 'memberships')->withTimestamps();
+    }
+
+    public function directMessages() {
+        return $this->hasMany(DirectMessage::class, 'sender_id');
+    }
+
+    public function DMChannels() {
+        return $this->hasMany(DMChannel::class, 'dm_channel_user');
     }
 
     public function friends() {
