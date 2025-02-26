@@ -9,5 +9,17 @@ class Server extends Model
 {
     use HasFactory;
 
-    protected $fillable = []
+    protected $fillable = ['name', 'owner_id'];
+
+    public function owner() {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function channel() {
+        return $this->hasMany(Channel::class);
+    }
+
+   public function messages() {
+        return $this->hasMany(Message::class, Channel::class);
+   }
 }
