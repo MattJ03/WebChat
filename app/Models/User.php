@@ -43,4 +43,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function ownedServers() {
+        return $this->hasMany(Server::class, 'owner_id');
+    }
+
+    public function channel() {
+        return $this->hasMany(Channel::class, 'owner_id');
+    }
+
+    public function membership() {
+        return $this->belongsTo(Membership::class, 'memberships')->withTimestamps();
+    }
+
+    public function friends() {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+    }
 }
