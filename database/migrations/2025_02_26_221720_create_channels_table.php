@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('server_id')->constrained('servers')->onDelete('cascade');
             $table->timestamps();
         });
     }
