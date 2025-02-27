@@ -19,10 +19,6 @@ class Server extends Model
         return $this->hasMany(Channel::class);
     }
 
-   public function messages() {
-        return $this->hasMany(Message::class, Channel::class);
-   }
-
    public function members() {
         return $this->hasMany(User::class, 'memberships')
             ->withTimestamps();
