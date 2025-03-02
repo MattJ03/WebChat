@@ -11,25 +11,19 @@ class ServerPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
+
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, server $server): bool
-    {
-        //
-    }
+
 
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,22 +39,15 @@ class ServerPolicy
      */
     public function delete(User $user, server $server): bool
     {
-        //
+        return $user->id === $server->owner_id || $user->hasRole('admin');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, server $server): bool
-    {
-        //
-    }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, server $server): bool
-    {
-        //
-    }
+
 }
