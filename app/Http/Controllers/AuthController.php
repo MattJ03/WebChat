@@ -8,11 +8,14 @@ use Spatie\Permission\Models\Role;
 class AuthController extends Controller
 {
     public function register(Request $request) {
-
-        $user = User::create([
-            'name' => 'required|min:1|max:50',
+        $credentials = $request->validate([
+            'name' => 'required|string|min:1|max:30',
             'email' => 'required|email|unique:users,email',
-            'password'
+            'password' => 'required|string|min:5|max:30|confirmed',
         ]);
+
+        User::create($credentials);
+        return route('login');
     }
+
 }
