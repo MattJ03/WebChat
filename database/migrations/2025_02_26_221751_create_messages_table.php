@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('channels_id')->constrained('channels')->onDelete('cascade');
-            $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
-            $table->text('content');
             $table->timestamps();
         });
     }

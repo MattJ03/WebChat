@@ -9,18 +9,5 @@ class Server extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'owner_id'];
 
-    public function owner() {
-        return $this->belongsTo(User::class, 'owner_id');
-    }
-
-    public function channel() {
-        return $this->hasMany(Channel::class);
-    }
-
-   public function members() {
-        return $this->hasMany(User::class, 'memberships')
-            ->withTimestamps();
-   }
 }
