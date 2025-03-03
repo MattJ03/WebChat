@@ -13,10 +13,9 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'name' => 'required|string|min:1|max:30',
             'email' => 'required|email|unique:users,email',
-            'password' => Hash::make('required|string|min:5|max:30|confirmed'),
+            'password' => 'required|string|min:5|max:30|confirmed',
         ]);
-
-        User::create($credentials);
+        $credentials['password'] = Hash::make($credentials['password']);
         return route('login');
     }
 
@@ -26,7 +25,7 @@ class AuthController extends Controller
            'password' =>  'required|string|min:5|max:30',
         ]);
         if(!Auth::attempt($credentials)) {
-            return back()->withErrors(['Email or password is invalid']);
+            return back()->withErrors(['error','Email or password is invalid']);
         }
         $session = $request->session()->regenerate();
         return route('dashboard');
