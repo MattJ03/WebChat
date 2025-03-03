@@ -16,7 +16,8 @@ class AuthController extends Controller
             'password' => 'required|string|min:5|max:30|confirmed',
         ]);
         $credentials['password'] = Hash::make($credentials['password']);
-        return route('login');
+        User::create($credentials);
+        return redirect()->route('login');
     }
 
     public function login(Request $request) {
@@ -27,14 +28,14 @@ class AuthController extends Controller
         if(!Auth::attempt($credentials)) {
             return back()->withErrors(['error','Email or password is invalid']);
         }
-        $session = $request->session()->regenerate();
-        return route('dashboard');
+        $request->session()->regenerate();
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request) {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('login');
+        return redirect()->route('login');
     }
 
 }
