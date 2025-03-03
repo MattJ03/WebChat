@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
 
     public function servers() {
-        return $this->belongsToMany(Server::class, 'server_user');
+        return $this->belongsToMany(Server::class, 'server_user')->withPivot('role');
     }
 
     public function ownedServers() {
