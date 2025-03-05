@@ -12,6 +12,12 @@ class MessageController extends Controller
     public function sendMessage(Request $request, Server $server) {
         $this->authorize('sendMessage', $server);
 
+        $request->validate([
+           'content' => 'required|max:200',
+        ]);
+
+
+
 
 
     }
