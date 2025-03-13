@@ -11,6 +11,11 @@ use App\Events\MessageSent;
 class MessageController extends Controller
 {
 
+    public function index(Server $server) {
+        $messages = $server->messages()->get();
+        return view('app', compact('messages', 'server'));
+    }
+
     public function store(Request $request, Server $server) {
         $request->validate([
            'content' => 'required|string|max:250',

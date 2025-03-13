@@ -1,10 +1,11 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import './index';
+import Chat from './components/Chat.vue';
 
-const app = createApp(App);
-app.use(router);
-app.use(store);
+const appElement = document.getElementById('app');
+
+const app = createApp(Chat, {
+    initialMessages: JSON.parse(appElement.dataset.messages),
+    serverId: appElement.dataset.serverId
+});
+
 app.mount('#app');
