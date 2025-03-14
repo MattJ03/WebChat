@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import Chat from './components/Chat.vue';
+import Chat from './components/chat.vue';
 
 const appElement = document.getElementById('app');
 

@@ -7,6 +7,9 @@
     @vite('resources/js/app.js') {{-- Load Vue App --}}
 </head>
 <body>
-<div id="app" data-messages='@json($messages ?? [])' data-server-id="{{ $server->id ?? [] }}"></div>
+<div id="app"
+     data-messages='@json($messages ?? [])'
+     data-server-id="{{ is_array($server->id ?? null) ? '' : ($server->id ?? '') }}">
+</div>
 </body>
 </html>
