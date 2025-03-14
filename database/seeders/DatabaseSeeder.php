@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Database\Factories\ServerFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,5 +28,7 @@ class DatabaseSeeder extends Seeder
       $adminRole->givePermissionTo([Permission::all()]);
       $moderatorRole->givePermissionTo(['send message', 'kick member', 'delete message', 'manage channel']);
       $userRole->givePermissionTo(['send message']);
+
+
     }
 }
